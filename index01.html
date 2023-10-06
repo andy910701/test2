@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- jquery + Bootstrap 5 CSS + bootstrap 5 js -->	
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>	   
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!-- my CSS + js -->
+   <style>
+		header { height: 80px; 
+					color: #ffffff; 
+					/*background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);  */
+					background-image: linear-gradient(to top, #1324e0 0%, #21cb38 100%);
+					line-height: 80px;
+		}
+		main {  
+			min-height: 70vh;
+			/*background-color:#fff2e6; 背景顏色*/
+			background-image: linear-gradient(135deg, #74df50 0%, #74df50 100%);  /*29*/
+			/*background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);  52*/
+            
+		}
+        
+		footer {
+			/*background-color: #eee5dd;	底下顏色*/
+			background-image: linear-gradient(to top, #d9e715 0%, #d9e715 100%);
+		}
+		/* style the 標籤分頁 導覽列 */
+		.tab-content img {
+			width: 300px;
+			height: 250px;
+			display: block;
+			margin-left:auto;
+			margin-right:auto;
+		}
+		h3 {
+			text-align:center;
+		}
+		.nav-link {
+			color:#663300;
+		}
+        /* 热饮区按钮样式 */
+        .nav-tabs .nav-link.hot-drinks.active {
+            background-color: #d61111; /* 设置背景颜色为红色 */
+            color: yellow; /* 设置文字颜色为黄色 */
+            border-bottom: 5px solid yellow; /* 设置底部边框颜色为红色 */
+        }
+        
+        /* 冷饮区按钮样式 */
+        .nav-tabs .nav-link.cold-drinks.active {
+            background-color: blue; /* 设置背景颜色为蓝色 */
+            color: lightblue; /* 设置文字颜色为浅蓝色 */
+            border-bottom: 5px solid rgb(255, 255, 255); /* 设置底部边框颜色为原先的蓝色 */
+        }
+
+		.tab-content h3 {
+			padding:20px;
+			color:darkviolet;
+		}
+		.myButton01 {
+			display:inline-block;
+			border-radius:5px; border:1px solid #337bc4;  /*按鈕外框顏色*/
+			background-color:#9f109f; color:#ffffff;      /*按鈕顏色*/
+			 /*box-shadow: 3px 4px 0px 0px #1564ad;*/
+			cursor:pointer;
+			font-family:Arial; font-size:30px; font-weight:bold;/*加入購物車的字*/
+			text-decoration:none; 
+			text-shadow:0px 1px 0px #528ecc; margin:10px;
+			height: 50px;
+			line-height: 30px;
+		}
+        .myButton02 {
+			display:inline-block;
+			border-radius:5px; border:1px solid #de0d0d;  /*按鈕外框顏色*/
+			background-color:#000000; color:#ffffff;      /*按鈕顏色*/
+			 /*box-shadow: 3px 4px 0px 0px #1564ad;*/
+			cursor:pointer;
+			font-family:Arial; font-size:30px; font-weight:bold;
+			text-decoration:none; 
+			text-shadow:0px 1px 0px #de0d0d; margin:15px;
+			height: 50px;
+			line-height: 30px;
+		}
+        .myButton03 {
+			display:inline-block;
+			border-radius:5px; border:1px solid #ffffff;  /*按鈕外框顏色*/
+			background-color:blue; color:#ffffff;      /*按鈕顏色*/
+			 /*box-shadow: 3px 4px 0px 0px #1564ad;*/
+			cursor:pointer;
+			font-family:Arial; font-size:30px; font-weight:bold;
+			text-decoration:none; 
+			text-shadow:0px 7px 0px #000000; margin:15px;
+			height: 50px;
+			line-height: 30px;
+		}
+		.myButton01:hover {
+			background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+			background-color:#378de5;
+		}
+        .myButton02:hover {
+			background:linear-gradient(to bottom, #9e0e0e 5%, #de0d0d 100%);
+			background-color:#378de5;
+		}
+        .myButton03:hover {
+			background:linear-gradient(to bottom, #1ddbe6 5%, #2145e7 100%);
+			background-color:#378de5;
+		}
+		tr th {
+			width: 200px;
+		}
+        .tab-content #menu1 {
+            background-color: pink; /* 设置背景颜色为浅蓝色 */
+        }
+        .tab-content #menu2 {
+            background-color: lightblue; /* 设置背景颜色为浅蓝色 */
+        }
+        
+
+    </style>
+
+</head>
+<body>
+    <header class="col text-center font-weight-bold sticky-top" style="font-family: '標楷體', sans-serif; font-size: 60px;">
+        晴光豆花
+    </header>
+    
+    
+    <main class="container-fluid">
+        
+           <!-- 標籤分頁 導覽列 -->
+           <div class="nav nav-tabs nav-justified">
+                <button class="nav-link hot-drinks active" data-bs-toggle="tab" data-bs-target="#menu1" aria-selected="true">
+                    熱飲區
+                </button>
+                <button class="nav-link cold-drinks" data-bs-toggle="tab" data-bs-target="#menu2" aria-selected="false">
+                    冷飲區
+                </button>
+           </div>
+       
+
+
+
+
+           <!-- 標籤分頁的 內容 -->
+           <div class="tab-content ms-2">	   
+               <div class="tab-pane fade text-center show active" id="menu1">
+                        <br>    
+                        <div>
+                        <select id="coffee" onchange="select()">
+                            <option value="請選擇">請選擇你要的熱飲</option>
+                            <option value="薑汁花生豆花">薑汁花生豆花</option>
+                            <option value="花生豆花">花生豆花</option>
+                            <option value="粉圓豆花">粉圓豆花</option>
+                            <option value="紅豆豆花">紅豆豆花</option>
+                            <option value="紅豆湯">紅豆湯</option>
+                            <option value="花生湯">花生湯</option>
+                            <option value="紅豆花生湯">紅豆花生湯</option>
+                            <option value="花生圓仔湯">花生圓仔湯</option>
+                            <option value="紅豆圓仔湯">紅豆圓仔湯</option>
+                            <option value="芋圓豆花">芋圓豆花</option>
+                            <option value="芝麻湯圓湯">芝麻湯圓湯</option>
+                            <option value="芝麻湯圓豆花">芝麻湯圓豆花</option>
+                        </select>
+                        <br><br>
+
+                        <h4 id ="show"></h4>
+                        <img id="image" src="imageshot/請選擇.jpg" style="max-width: 100%; height: auto;">
+                        <br><br>
+                        </div>
+
+                        <script>
+                            function select() {
+                                var x = document.getElementById("coffee").value;
+                                document.getElementById("show").innerHTML="您選的熱飲是："+x;
+                                document.getElementById("image").src="imageshot/" +x+".jpg";
+                            }
+                        </script>
+
+                        <label class="text-muted">請輸入數量:</label>
+                            <input type="number" min="1" id="coffeeQty" value="1"  style="width:100px">
+                        <br><br>
+                        <center><button class="myButton01" id="addInCoffee">加入購物車</button></center>
+                        <center><button class="myButton02" onclick="clearCart()">清空購物車</button></center>
+                        
+               </div>
+               
+               <div class="tab-pane text-center fade" id="menu2">
+                        <br>  
+                        <div>
+                        <select id="milk"  onchange="choose()">
+                            <option value="請選擇">請選擇你要的冷飲</option>
+                            <option value="花生豆花">花生豆花</option>
+                            <option value="粉圓豆花">粉圓豆花</option>
+                            <option value="綠豆豆花">綠豆豆花</option>
+                            <option value="大紅豆豆花">大紅豆豆花</option>
+                            <option value="檸檬豆花">檸檬豆花</option>
+                            <option value="綠豆湯">綠豆湯</option>
+                            <option value="粉圓綠豆湯">粉圓綠豆湯</option>
+                            <option value="粉圓綠豆豆花">粉圓綠豆豆花</option>
+                            <option value="丁香綠豆豆花">丁香綠豆豆花</option>
+                            <option value="丁香粉圓豆花">丁香粉圓豆花</option>
+                            <option value="丁香花生豆花">丁香花生豆花</option>
+                            <option value="芋圓豆花">芋圓豆花</option>
+                        </select>
+                        <br><br>
+
+                        <h4 id ="appear"></h4>
+                        <img id="photo" src="imagescold/請選擇.jpg" style="max-width: 100%; height: auto;">
+                        <br><br>
+                        </div>
+                        
+                        <script>
+                            function choose() {
+                                var y = document.getElementById("milk").value;
+                                document.getElementById("appear").innerHTML="您選的冷飲是："+y;
+                                document.getElementById("photo").src="imagescold/" +y+".jpg";
+                            }
+                        </script>
+                        
+                        <label class="text-muted">請輸入數量:</label>
+                            <input type="number" min="1" id="milkQty" value="1" style="width:100px">
+                        <br><br>
+                        <center><button class="myButton01" id="addInMilk">加入購物車</button></center>
+                        <center><button class="myButton02" onclick="clearCart()">清空購物車</button></center>
+                    
+                </div>
+                
+            </div>
+            <br><br>
+        <center>  
+            <p id="display"></p>
+            <div style="overflow-y: auto; height: 100px">
+                <table class="ms-2" id="orderList">
+                    <tr>
+                      <th>品項</th>
+                      <th>數量</th>
+                      <th>單價</th>
+                      <th>價錢</th>
+                    </tr>
+                </table>
+            </div>
+            <p class="mt-3 text-center" id="total"></p>
+            <div>
+                <label>請選擇取餐時間:</label><br>
+                <button onclick="decrementTime()">-</button>
+                <select id="selectedTime" onchange="updateSelectedTime()">
+                    <option value="">每30分鐘為單位</option>
+                    <option value="11:30">11:30 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="12:30">12:30 PM</option>
+                    <option value="13:00">01:00 PM</option>
+                    <option value="13:30">01:30 PM</option>
+                    <option value="14:00">02:00 PM</option>
+                    <option value="14:30">02:30 PM</option>
+                    <option value="15:00">03:00 PM</option>
+                    <option value="15:30">03:30 PM</option>
+                    <option value="16:00">04:00 PM</option>
+                    <option value="16:30">04:30 PM</option>
+                    <option value="17:00">05:00 PM</option>
+                    <option value="17:30">05:30 PM</option>
+                    <option value="18:00">06:00 PM</option>
+                    <option value="18:30">06:30 PM</option>
+                    <option value="19:00">07:00 PM</option>
+                    <option value="19:30">07:30 PM</option>
+                    <option value="20:00">08:00 PM</option>
+                    <option value="20:30">08:30 PM</option>
+                    <option value="21:00">09:00 PM</option>
+                    <option value="21:30">09:30 PM</option>
+                    <option value="22:00">10:00 PM</option>
+                    <option value="22:30">10:30 PM</option>
+                    <!-- 添加其他時間選項 -->
+                </select>
+                <button onclick="incrementTime()">+</button>
+            </div>
+        </center>
+    </main>
+
+    <footer class="row py-5">
+		<div class="row mx-0 justify-content-center align-items-center w-100">
+			<button class="myButton03 w-50" id="submit_Order">送出訂單</button>
+		</div>
+	</footer>
+   
+
+    <!-- 使用 CDN edge 路徑, 會自動使用 最新版的 sdk.js-->
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script>
+               
+        var td1 = []; 
+        var td2 = [];
+        var td3 = [];
+        var td4 = [];
+        var n=1;
+        var x=0;
+        var y=0;
+        let coffeePrice = [0, 45, 45, 45, 50, 50, 50, 50, 50, 50, 50, 55, 55];
+        let milkPrice = [0, 45, 45, 45, 45, 45, 45, 45, 45, 50, 50, 50, 50];
+        var amount = [];
+        var total =0;
+
+        function select_Coffee(){
+            var coffeeItem = document.getElementById("coffee").value;
+        }     	       
+        document.getElementById("addInCoffee").addEventListener("click", function(){
+
+            var coffeeItem = document.getElementById("coffee").value;  // 取得產品名字
+            td1[x] = coffeeItem;
+
+            document.getElementById("display").innerHTML="<font color='black'>新增"+td1[x]+"到購物車成功!</font>";
+            
+            var qty = document.getElementById("coffeeQty").value;
+            td2[x] = document.getElementById("coffeeQty").value;
+
+            var index = document.getElementById("coffee").selectedIndex;
+            var c_Price = coffeePrice[index];
+            td3[x] = c_Price;
+
+            var sub_price = qty * c_Price;
+            td4[x] = sub_price;  
+           
+            var addRow_n = document.getElementById("orderList");
+            var newRow = addRow_n.insertRow(n);
+           
+            var cel1 = newRow.insertCell(0);
+            var cel2 = newRow.insertCell(1);
+            var cel3 = newRow.insertCell(2);
+            var cel4 = newRow.insertCell(3);
+            
+            cel1.innerHTML = td1[x];
+            cel2.innerHTML = td2[x];
+            cel3.innerHTML = td3[x];
+            cel4.innerHTML = td4[x];
+
+            amount[x] = td4[x];
+            total = total + amount[x];
+            document.getElementById("total").innerHTML= "<font color='red' size='+10' face='標楷體'>總共是: " + total + "&nbsp元</font>";
+            n++;
+            x++;
+        }); 
+        
+        function select_Milk(){
+            var milkItem = document.getElementById("milk").value;
+        } 
+
+        function incrementTime() {
+            var select = document.getElementById('selectedTime');
+            var currentIndex = select.selectedIndex;
+            if (currentIndex < select.options.length - 1) {
+                select.selectedIndex = currentIndex + 1;
+                updateSelectedTime();
+            }
+        }
+
+        function decrementTime() {
+            var select = document.getElementById('selectedTime');
+            var currentIndex = select.selectedIndex;
+            if (currentIndex > 0) {
+                select.selectedIndex = currentIndex - 1;
+                updateSelectedTime();
+            }
+        }
+
+        function updateSelectedTime() {
+            var selectedTime = document.getElementById('selectedTime').value;
+            document.getElementById('displayTime').innerText = '選擇的時間: ' + selectedTime;
+        }
+  	
+        
+        document.getElementById("addInMilk").addEventListener("click", function(){
+
+            var milkItem = document.getElementById("milk").value;  // 取得產品名字
+            td1[x] = milkItem;
+
+            document.getElementById("display").innerHTML="<font color='black'>新增"+td1[x]+"到購物車成功!</font>";
+            
+            var qty = document.getElementById("milkQty").value;
+            td2[x] = document.getElementById("milkQty").value;
+
+            var index = document.getElementById("milk").selectedIndex;
+            var c_Price = milkPrice[index];
+            td3[x] = c_Price;
+
+            var sub_price = qty * c_Price;
+            td4[x] = sub_price; 
+           
+            var addRow_n = document.getElementById("orderList");
+            var newRow = addRow_n.insertRow(n);
+           
+            var cel1 = newRow.insertCell(0);
+            var cel2 = newRow.insertCell(1);
+            var cel3 = newRow.insertCell(2);
+            var cel4 = newRow.insertCell(3);
+            
+            cel1.innerHTML = td1[x];
+            cel2.innerHTML = td2[x];
+            cel3.innerHTML = td3[x];
+            cel4.innerHTML = td4[x];
+
+            amount[x] = td4[x];
+            total = total + amount[x];
+            document.getElementById("total").innerHTML= "<font color='red' size='+10' face='標楷體'>總共是：" + total + "&nbsp元</font>";
+            n++;
+            x++;
+        })
+            function clearCart() {
+            var orderListTable = document.getElementById('orderList');
+            while (orderListTable.rows.length > 1) {
+                orderListTable.deleteRow(1);
+            }
+
+            td1 = [];
+            td2 = [];
+            td3 = [];
+            td4 = [];
+            n = 1;
+            x = 0;
+            y = 0;
+            total = 0;
+
+            document.getElementById('total').innerText = '';
+            document.getElementById('display').innerText = '清空購物車成功!';
+        }
+
+        $(document).ready(function () {
+        initializeLiff('{{ liffid }}');
+        var orderConfirmed = false; // 记录订单是否已经确认提交
+
+        $('#submit_Order').click(function (e) {  
+        var totalElement = document.getElementById("total");
+        var total = totalElement.textContent;
+        var selectedTime = document.getElementById("selectedTime").value;
+        var confirmationMessage = "確定提交訂單，" + total + "；取餐時間：" + selectedTime + " 嗎？";
+
+        if (confirm(confirmationMessage)) {
+             // 订单已确认
+            this.textContent = "訂單已提交，取餐時間 : " + selectedTime;
+            var msg = "###";
+            msg += td1[1] + "/";
+            msg += td2[1] + "/";
+            msg += td3[1] + "/";
+            msg += td4[1] + "/";
+            msg += place + "/";
+    
+            liff.sendMessages([
+                {
+                    type: 'text',
+                    text: msg
+                }
+            ]).then(() => {
+                liff.closeWindow();
+            });
+            } 
+            else {
+            orderConfirmed = false;
+            window.scrollTo(0, 0);
+        }
+        });
+        });
+        // 初始化 LIFF SDK 
+        function initializeLiff(myLiffId) {
+            liff
+                .init({
+                    liffId: myLiffId, // 確定使用 此 liffid APP
+                    withLoginOnExternalBrowser: true, // 啟用自動登入功能
+                });
+        }
+        function placeOrder(type, amount, in_datetime, out_datetime) {
+        }
+    </script>
+</body>
+</html>

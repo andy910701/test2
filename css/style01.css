@@ -1,0 +1,94 @@
+header {
+    text-align: center;
+    height: 6vh; 
+    color: #ffffff;
+    background-image:linear-gradient(to bottom,#99A799,#D3E4CD) ;
+    line-height: 6vh; 
+    font-size: larger;
+}
+
+nav.scrollmenu {
+    background-color: #333;
+    overflow: auto;
+    white-space: nowrap;
+}
+  
+nav.scrollmenu a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+nav.scrollmenu a:hover {
+    background-color: #777;
+}
+
+.flex-container {
+    display: flex; flex-wrap: wrap; align-items: center;
+    background-image: linear-gradient(to bottom right, red ,yellow, blue, red);
+}
+.flex-container > div {
+    width: 250px; margin: 10px;
+}
+button{
+    margin-left: 10px;
+    border: 0;
+    background-color: #998c7c;
+    color: #ffffff;
+    height: 30px;
+    width: 100px;
+    font-size: 15px;
+    border-radius: 50px;
+}
+
+button:hover{
+    margin-left: 10px;
+    border: 0;
+    background-color: #b8a895;
+    color: #ffffff;
+    height: 30px;
+    width: 100px;
+    font-size: 15px;
+    border-radius: 50px;
+}
+
+.myButton01 {
+display:inline-block;
+border-radius:5px; border:1px solid #337bc4;
+background-color:#79bbff; color:#ffffff;
+box-shadow: 3px 4px 0px 0px #1564ad;
+cursor:pointer;
+font-family:Arial; font-size:15px; font-weight:bold;
+text-decoration:none; 
+text-shadow:0px 1px 0px #528ecc; margin:5px;
+height: 30px;
+line-height: 15px;
+}
+.myButton01:hover {
+background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+background-color:#378de5;
+}
+
+
+.myButton02 {
+display:inline-block;
+border-radius:5px; border:1px solid #337bc4;
+background-color:#79bbff; color:#ffffff;
+box-shadow: 3px 4px 0px 0px #1564ad;
+cursor:pointer;
+font-family:Arial; font-size:25px; font-weight:bold;
+padding:12px 44px; text-decoration:none; 
+text-shadow:0px 1px 0px #528ecc; margin:5px;
+height: 60px;
+}
+.myButton02:hover {
+background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+background-color:#378de5;
+}
+input { 
+    height:26px;  
+    font-size: 20px;
+    border-radius:5px;
+    border:1px solid limegreen;
+} 
